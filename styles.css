@@ -1,25 +1,12 @@
 
 :root {
-    --bg-color: #121212;
-    --text-color: #f0f0f0;
-    --accent-color: #d1af27;
-    --card-color: #1f3b73;
-    --input-bg: #1f1f1f;
-    --input-border: #444;
-}
-
-[data-theme="light"] {
-    --bg-color: #ffffff;
-    --text-color: #121212;
-    --accent-color: #1f3b73;
-    --card-color: #e8eefc;
-    --input-bg: #f9f9f9;
-    --input-border: #ccc;
+    scroll-behavior: smooth;
+    --transition-speed: 0.3s;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: #121212;
+    color: #f0f0f0;
     font-family: 'Inter', 'Open Sans', sans-serif;
     font-size: 18px;
     line-height: 1.6;
@@ -28,6 +15,7 @@ body {
     max-width: 768px;
     margin-left: auto;
     margin-right: auto;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 header, footer {
@@ -35,43 +23,64 @@ header, footer {
     margin-bottom: 2rem;
 }
 
+.skip-link {
+    position: absolute;
+    left: -9999px;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    background: #ffd700;
+    color: #121212;
+    padding: 0.5rem 1rem;
+    z-index: 1000;
+}
+
 .subtitle {
     font-size: 1rem;
-    color: var(--accent-color);
+    color: #d1af27;
 }
 
 h1, h2, legend {
-    color: var(--accent-color);
+    color: #d1af27;
     margin-top: 1.5rem;
 }
 
 section, form {
     margin-bottom: 2rem;
+    transition: all var(--transition-speed) ease-in-out;
 }
 
 .review-card {
-    background: var(--card-color);
+    background: #1f3b73;
     padding: 1rem;
     border-radius: 8px;
-    color: var(--text-color);
+    color: #ffffff;
 }
 
 fieldset {
-    border: 1px solid var(--input-border);
+    border: 1px solid #333;
     border-radius: 6px;
     padding: 1rem;
     margin-bottom: 1rem;
+    transition: all var(--transition-speed) ease-in-out;
 }
 
-label, select, textarea {
+label, select, textarea, input[type="range"] {
     display: block;
     width: 100%;
     margin-bottom: 0.75rem;
-    background: var(--input-bg);
-    color: var(--text-color);
-    border: 1px solid var(--input-border);
+    background: #1f1f1f;
+    color: #ffffff;
+    border: 1px solid #444;
     padding: 0.5rem;
     font-size: 1rem;
+    transition: all var(--transition-speed);
+}
+
+input[type="range"] {
+    accent-color: #d1af27;
 }
 
 textarea {
@@ -83,46 +92,9 @@ input[type="checkbox"] {
     margin-right: 0.5rem;
 }
 
-input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 2rem;
-    background: transparent;
-    margin: 0.5rem 0;
-    padding: 0;
-    touch-action: pan-y;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-    background-color: #ffffff;
-    height: 0.4rem;
-    border-radius: 0.2rem;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 1.5rem;
-    width: 1.5rem;
-    border-radius: 50%;
-    background: var(--accent-color);
-    margin-top: -0.55rem;
-    cursor: pointer;
-    border: none;
-}
-
-input[type="range"]::-moz-range-thumb {
-    background: var(--accent-color);
-    border: none;
-    height: 1.5rem;
-    width: 1.5rem;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
 button {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
+    background-color: #d1af27;
+    color: #121212;
     border: none;
     padding: 1rem 2rem;
     font-size: 1rem;
@@ -130,6 +102,7 @@ button {
     width: 100%;
     border-radius: 6px;
     font-weight: bold;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 button:focus, input:focus, select:focus, textarea:focus {
@@ -137,30 +110,28 @@ button:focus, input:focus, select:focus, textarea:focus {
     outline-offset: 3px;
 }
 
-.toggle-theme {
-    background: none;
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color);
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .step-nav {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
+}
+
+.toggle-theme {
+    background: none;
+    border: 2px solid #d1af27;
+    color: #d1af27;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
-@media (max-width: 480px) {
-    body {
-        font-size: 16px;
-        padding: 0.75rem;
-    }
-
-    button {
-        padding: 0.75rem 1rem;
-    }
+.toggle-theme svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
 }
