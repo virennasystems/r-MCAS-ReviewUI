@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
     <header role="banner">
         <h1>MCAS Review Panel</h1>
         <p class="subtitle">Quality Assessment & Moderation – r/MCAS Database</p>
+        <button class="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
     </header>
 
     <main role="main">
@@ -28,60 +30,74 @@
         </section>
 
         <form aria-label="Review Form" id="reviewForm">
-            <fieldset>
-                <legend>Evaluation</legend>
+            <!-- STEP 1 -->
+            <div id="step1">
+                <fieldset>
+                    <legend>Evaluation</legend>
+                    <label id="plausibilityLabel" for="plausibility">Plausibility (1 = low, 5 = high):
+                        <input type="range" id="plausibility" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'plausibilityVal')">
+                        <span id="plausibilityVal" aria-describedby="plausibilityLabel">3</span>
+                    </label>
 
-                <label id="plausibilityLabel" for="plausibility">Plausibility (1 = low, 5 = high):
-                    <input type="range" id="plausibility" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'plausibilityVal')">
-                    <span id="plausibilityVal" aria-describedby="plausibilityLabel">3</span>
-                </label>
+                    <label for="relevance">Relevance to MCAS:
+                        <input type="range" id="relevance" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'relevanceVal')">
+                        <span id="relevanceVal">3</span>
+                    </label>
 
-                <label id="relevanceLabel" for="relevance">Relevance to MCAS:
-                    <input type="range" id="relevance" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'relevanceVal')">
-                    <span id="relevanceVal" aria-describedby="relevanceLabel">3</span>
-                </label>
-
-                <label id="clarityLabel" for="clarity">Clarity:
-                    <input type="range" id="clarity" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'clarityVal')">
-                    <span id="clarityVal" aria-describedby="clarityLabel">3</span>
-                </label>
-
-                <label id="toleranceLabel" for="tolerance">Tolerability (low sensory load):
-                    <input type="range" id="tolerance" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'toleranceVal')">
-                    <span id="toleranceVal" aria-describedby="toleranceLabel">3</span>
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Metadata</legend>
-                <label for="category">Category:
-                    <select id="category" name="category">
-                        <option>Medication</option>
-                        <option>Nutrition</option>
-                        <option>Symptom Management</option>
-                        <option>Environment / Triggers</option>
-                    </select>
-                </label>
-
-                <fieldset role="group" aria-labelledby="tagsLegend">
-                    <legend id="tagsLegend">Tolerability Tags</legend>
-                    <label><input type="checkbox" name="marker"> Low-histamine</label>
-                    <label><input type="checkbox" name="marker"> Tested for MCAS</label>
-                    <label><input type="checkbox" name="marker"> Trigger Potential</label>
+                    <label for="clarity">Clarity:
+                        <input type="range" id="clarity" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'clarityVal')">
+                        <span id="clarityVal">3</span>
+                    </label>
                 </fieldset>
-            </fieldset>
+                <div class="step-nav">
+                    <span></span>
+                    <button type="button" onclick="nextStep()">Continue</button>
+                </div>
+            </div>
 
-            <fieldset>
-                <legend>GPT Comment Suggestion</legend>
-                <textarea lang="en" rows="4" aria-label="GPT Comment">Post is plausible and contains potentially useful experiences with DAO supplementation...</textarea>
-            </fieldset>
+            <!-- STEP 2 -->
+            <div id="step2" style="display: none;">
+                <fieldset>
+                    <legend>Metadata</legend>
+                    <label for="category">Category:
+                        <select id="category" name="category">
+                            <option>Medication</option>
+                            <option>Nutrition</option>
+                            <option>Symptom Management</option>
+                            <option>Environment / Triggers</option>
+                        </select>
+                    </label>
 
-            <fieldset>
-                <legend>Moderator Comment</legend>
-                <textarea lang="en" rows="3" aria-label="Moderator Decision Comment" placeholder="Optional comment for the decision..."></textarea>
-            </fieldset>
+                    <fieldset role="group" aria-labelledby="tagsLegend">
+                        <legend id="tagsLegend">Tolerability Tags</legend>
+                        <label><input type="checkbox" name="marker"> Low-histamine</label>
+                        <label><input type="checkbox" name="marker"> Tested for MCAS</label>
+                        <label><input type="checkbox" name="marker"> Trigger Potential</label>
+                    </fieldset>
+                </fieldset>
 
-            <button type="submit">Review & Save Post</button>
+                <fieldset>
+                    <legend>GPT Comment Suggestion</legend>
+                    <textarea lang="en" rows="4" aria-label="GPT Comment">Post is plausible and contains potentially useful experiences with DAO supplementation...</textarea>
+                </fieldset>
+
+                <div class="step-nav">
+                    <button type="button" onclick="prevStep()">Back</button>
+                    <button type="button" onclick="nextStep()">Continue</button>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div id="step3" style="display: none;">
+                <fieldset>
+                    <legend>Moderator Comment</legend>
+                    <textarea lang="en" rows="3" aria-label="Moderator Decision Comment" placeholder="Optional comment for the decision..."></textarea>
+                </fieldset>
+                <div class="step-nav">
+                    <button type="button" onclick="prevStep()">Back</button>
+                    <button type="submit">Review & Save Post</button>
+                </div>
+            </div>
         </form>
     </main>
 
