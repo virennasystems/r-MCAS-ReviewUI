@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCAS Review Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#reviewForm" class="skip-link">Skip to review form</a>
+    <header role="banner">
+        <h1>MCAS Review Panel</h1>
+        <p class="subtitle">Quality Assessment & Moderation – r/MCAS Database</p>
+    </header>
+
+    <main role="main">
+        <section aria-labelledby="intro">
+            <h2 id="intro">Purpose of this Review</h2>
+            <p>This interface is designed for the structured evaluation and annotation of posts for the r/MCAS database. The goal is to systematically capture relevant, tolerable, and well-understood content.</p>
+        </section>
+
+        <section aria-labelledby="post-preview">
+            <h2 id="post-preview">Post Preview</h2>
+            <article class="review-card" role="article" aria-label="Reddit Post Preview">
+                <p><strong>Post Title:</strong> Experience Report on DAO Supplements</p>
+                <p><strong>Content:</strong> I have been taking DAO capsules for two weeks. The symptoms (flush, brain fog) have slightly improved...</p>
+            </article>
+        </section>
+
+        <form aria-label="Review Form" id="reviewForm">
+            <fieldset>
+                <legend>Evaluation</legend>
+
+                <label id="plausibilityLabel" for="plausibility">Plausibility (1 = low, 5 = high):
+                    <input type="range" id="plausibility" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'plausibilityVal')">
+                    <span id="plausibilityVal" aria-describedby="plausibilityLabel">3</span>
+                </label>
+
+                <label id="relevanceLabel" for="relevance">Relevance to MCAS:
+                    <input type="range" id="relevance" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'relevanceVal')">
+                    <span id="relevanceVal" aria-describedby="relevanceLabel">3</span>
+                </label>
+
+                <label id="clarityLabel" for="clarity">Clarity:
+                    <input type="range" id="clarity" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'clarityVal')">
+                    <span id="clarityVal" aria-describedby="clarityLabel">3</span>
+                </label>
+
+                <label id="toleranceLabel" for="tolerance">Tolerability (low sensory load):
+                    <input type="range" id="tolerance" min="1" max="5" value="3" oninput="updateRangeLabel(this, 'toleranceVal')">
+                    <span id="toleranceVal" aria-describedby="toleranceLabel">3</span>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Metadata</legend>
+                <label for="category">Category:
+                    <select id="category" name="category">
+                        <option>Medication</option>
+                        <option>Nutrition</option>
+                        <option>Symptom Management</option>
+                        <option>Environment / Triggers</option>
+                    </select>
+                </label>
+
+                <fieldset role="group" aria-labelledby="tagsLegend">
+                    <legend id="tagsLegend">Tolerability Tags</legend>
+                    <label><input type="checkbox" name="marker"> Low-histamine</label>
+                    <label><input type="checkbox" name="marker"> Tested for MCAS</label>
+                    <label><input type="checkbox" name="marker"> Trigger Potential</label>
+                </fieldset>
+            </fieldset>
+
+            <fieldset>
+                <legend>GPT Comment Suggestion</legend>
+                <textarea lang="en" rows="4" aria-label="GPT Comment">Post is plausible and contains potentially useful experiences with DAO supplementation...</textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Moderator Comment</legend>
+                <textarea lang="en" rows="3" aria-label="Moderator Decision Comment" placeholder="Optional comment for the decision..."></textarea>
+            </fieldset>
+
+            <button type="submit">Review & Save Post</button>
+        </form>
+    </main>
+
+    <footer role="contentinfo">
+        <p>Part of the VIRENNA Review Architecture · Version 2025.07 · Contact: mods@r-mcas.net</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

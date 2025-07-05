@@ -1,0 +1,116 @@
+
+/* Barrierefreier, reizarmer Darkmode-Stil für r/MCAS ReviewUI */
+
+body {
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: 'Inter', 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 1rem;
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    background: #ffd700;
+    color: #121212;
+    padding: 0.5rem 1rem;
+    z-index: 1000;
+}
+
+header, footer {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #d1af27;
+}
+
+h1, h2, legend {
+    color: #d1af27;
+    margin-top: 1.5rem;
+}
+
+section, form {
+    margin-bottom: 2rem;
+}
+
+.review-card {
+    background: #1f3b73;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+fieldset {
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+label, select, textarea, input[type="range"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.75rem;
+    background: #1f1f1f;
+    color: #ffffff;
+    border: 1px solid #444;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+button {
+    background-color: #d1af27;
+    color: #121212;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+button:focus, input:focus, select:focus, textarea:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+        padding: 0.75rem;
+    }
+
+    button {
+        padding: 0.75rem 1rem;
+    }
+}
